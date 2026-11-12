@@ -1,0 +1,15 @@
+La Flotte du Roi : page d'accueil avec logos
+=============================================
+
+Ce dossier se dépose tel quel sur GitHub Pages.
+Avant ou après le dépôt, ouvre config.js et colle l'adresse de ton appli
+(celle qui finit par /exec), entre les guillemets.
+
+Adresses une fois en ligne (remplace « pseudo » par ton nom GitHub) :
+  Chefs  : https://pseudo.github.io/flotte-du-roi/
+  Ponant : https://pseudo.github.io/flotte-du-roi/ponant/?cle=...
+  Levant : https://pseudo.github.io/flotte-du-roi/levant/?cle=...
+
+Les liens complets des escadres (avec leur clé) s'affichent dans l'appli,
+Réglages > Liens des équipages, dès que l'adresse de la page y est enregistrée.
+Les clés ne sont jamais écrites dans ces fichiers.

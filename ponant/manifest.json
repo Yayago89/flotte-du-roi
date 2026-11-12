@@ -1,0 +1,26 @@
+{
+ "name": "La Flotte du Roi · Ponant",
+ "short_name": "Ponant",
+ "display": "standalone",
+ "background_color": "#f5ecd4",
+ "theme_color": "#1e3c8a",
+ "lang": "fr",
+ "icons": [
+  {
+   "src": "../icons/ponant-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "../icons/ponant-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "../icons/ponant-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}

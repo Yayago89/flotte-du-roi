@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Flotte du Roi</title>
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#2a1c0e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Flotte du Roi">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="icons/chefs-180.png">
+<link rel="icon" type="image/png" href="icons/chefs-64.png">
+<link rel="manifest" href="manifest.json">
+<script src="config.js"></script>
+<style>
+:root{--paper:#f5ecd4;--ink:#2a1c0e;--muted:#6b5636;--brass:#9a6a1c;--c:#1e3c8a}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#2a1c0e;color:var(--ink);font-family:Georgia,"Iowan Old Style",serif}
+main{max-width:460px;margin:0 auto;padding:max(28px,env(safe-area-inset-top)) 20px 32px;text-align:center}
+.carte{background:var(--paper);border:1px solid var(--ink);box-shadow:inset 0 0 0 4px var(--paper),inset 0 0 0 5px var(--c);padding:26px 22px}
+.kicker{letter-spacing:.32em;color:var(--brass);font-size:12px;text-transform:uppercase}
+h1{font-weight:normal;font-size:30px;margin:6px 0 2px;color:var(--c)}
+.sous{font-style:italic;color:var(--muted);margin:0 0 18px}
+img.ic{width:112px;height:112px;border-radius:24px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.btn{display:block;margin:20px auto 0;background:var(--ink);color:var(--paper);text-decoration:none;padding:14px 18px;font-size:18px;border:0;width:100%}
+.aide{text-align:left;margin-top:22px;border-top:1px solid #b49c6c;padding-top:14px;font-size:15px;line-height:1.45}
+.aide b{display:block;margin-top:8px}
+.note{font-size:13px;color:var(--muted)}
+.err{color:#9b1c14;font-weight:bold}
+.attente{display:none}
+.standalone .attente{display:block} .standalone .normal{display:none}
+</style>
+</head>
+<body>
+<main>
+  <div class="carte">
+    <div class="kicker">De par le Roy</div>
+    <h1>La Flotte du Roi</h1>
+    <p class="sous">Registre du Grand Maître de la Navigation</p>
+    <img class="ic" src="icons/chefs-180.png" alt="">
+    <p class="attente">Ouverture du registre…</p>
+    <div class="normal">
+      <p id="msg"></p>
+      <a class="btn" id="ouvrir" href="#">Ouvrir le registre</a>
+      <div class="aide">
+        <p><b>Mettre l'icône sur l'écran d'accueil</b></p>
+        <p><b>iPhone (Safari)</b>Touche le bouton Partager (le carré avec une flèche), puis « Sur l'écran d'accueil », puis « Ajouter ».</p>
+        <p><b>Android (Chrome)</b>Touche le menu ⋮ en haut à droite, puis « Ajouter à l'écran d'accueil » (ou « Installer l'application »).</p>
+        <p class="note">Ensuite, il suffit de toucher l'icône pour ouvrir directement le registre.</p>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+(function(){
+  var equipe="";
+  var app=String(window.FLOTTE_APP||"");
+  var q=new URLSearchParams(location.search), cle=(q.get("cle")||"").replace(/[^A-Za-z0-9]/g,"");
+  var msg=document.getElementById("msg"), btn=document.getElementById("ouvrir");
+  if(!/^https:\/\/script\.google\.com\/.+\/exec/.test(app)){msg.innerHTML='<span class="err">Page pas encore reliée à l\'application : les chefs doivent compléter le fichier config.js.</span>';btn.style.display="none";return}
+  if(equipe&&!cle){msg.innerHTML='<span class="err">Lien incomplet : demande le lien de ton escadre aux chefs.</span>';btn.style.display="none";return}
+  var cible=app+(equipe?"?equipe="+equipe+"&cle="+encodeURIComponent(cle):"");
+  btn.href=cible;
+  var seul=(window.navigator.standalone===true)||(window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches);
+  if(seul){document.documentElement.className="standalone";location.replace(cible)}
+})();
+</script>
+</body>
+</html>
